@@ -7,7 +7,8 @@ import * as Http from 'http';
 import * as Https from 'https';
 import * as Quip from 'quip';
 import * as Path from 'path';
-import * as Winston from 'winston';
+import * as Winston from 'Winston';
+
 
 // API controllers
 import { QuizAPI } from './api/quizAPI';

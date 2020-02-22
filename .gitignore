@@ -106,3 +106,6 @@ dist
 # js and map files
 *.js
 *.js.map
+
+# package-lock
+package-lock.json

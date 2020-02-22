@@ -1,5 +1,7 @@
+import * as constants from '../globalConstants';
 import { Response, Request, NextFunction, Router } from "express";
 import * as Quip from 'quip';
+import * as Winston from 'Winston';
 
 import { APIResponse, EAPIResponseStatus } from './APIResponse';
 
@@ -28,6 +30,9 @@ export abstract class BaseAPI {
         return this._router;
     }
     
+    public logRequest(request: Request): void {
+        Winston.info(`[${ constants.APP_NAME }] Request ${ request.url } from ${ request.ip }`);
+    }
 
     public sendResponse(expressResponse: Response, apiResonse: APIResponse) {
         let response = Quip(expressResponse);

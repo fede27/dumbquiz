@@ -7,5 +7,9 @@
 
     "paths": {
         "logs": "./data/logs"
+    },
+
+    "database": {
+        "url": "mongodb+srv://<user>:<password>@dumbquiz-u7rwl.gcp.mongodb.net/test"
     }
 }
