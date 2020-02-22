@@ -1,0 +1,11 @@
+{
+    "server": {
+        "port": 2727,
+        "hostname": "localhost",
+        "bind": "::"
+    },
+
+    "paths": {
+        "logs": "./data/logs"
+    }
+}

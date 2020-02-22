@@ -1,0 +1,58 @@
+{
+    "extends": "tslint:recommended",
+
+    "rules": {
+        "ban-types": {
+            "options": [
+                ["Object", "Avoid using the `Object` type. Did you mean `object`?"],
+                ["Function", "Avoid using the `Function` type. Prefer a specific function type, like `() => void`."],
+                ["Boolean", "Avoid using the `Boolean` type. Did you mean `boolean`?"],
+                ["Number", "Avoid using the `Number` type. Did you mean `number`?"],
+                ["String", "Avoid using the `String` type. Did you mean `string`?"],
+                ["Symbol", "Avoid using the `Symbol` type. Did you mean `symbol`?"],
+                ["Promise", "Avoid using the `Promise` type. Did you mean `Bluebird`?"]
+            ]
+        },
+        "forin": false,
+        "function-constructor": true,
+        "max-line-length": false,
+        "member-ordering": {
+            "options": {
+                "order": [
+                    "public-static-field",
+                    "protected-static-field",
+                    "private-static-field",
+                    "public-static-method",
+                    "protected-static-method",
+                    "private-static-method",
+                    "public-instance-field",
+                    "protected-instance-field",
+                    "private-instance-field",
+                    "public-constructor",
+                    "protected-constructor",
+                    "private-constructor",
+                    "public-instance-method",
+                    "protected-instance-method",
+                    "private-instance-method"
+                ]
+            }
+        },
+        "no-bitwise": false,
+        "no-consecutive-blank-lines": {
+            "options": 2,
+            "severity": "error"
+        },
+        "no-invalid-template-strings": true,
+        "object-literal-sort-keys": false,
+        "prefer-template": true,
+        "quotemark": {
+            "options": ["single", "avoid-escape", "avoid-template"],
+            "severity": "warning"
+        },
+        "unified-signatures": false,
+        "variable-name": {
+            "options": ["ban-keywords", "check-format", "allow-leading-underscore"],
+            "severity": "warning"
+        }
+    }
+}
