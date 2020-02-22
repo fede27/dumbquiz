@@ -1,6 +1,5 @@
 
 import { BaseAPI } from './baseAPI';
-import * as Quip from 'quip';
 import * as Express from 'express';
 
 import { APIResponse, EAPIResponseStatus } from './APIResponse';
