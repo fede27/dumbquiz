@@ -21,7 +21,7 @@ Passport.deserializeUser((id, done) => {
 });
 
 // Login stategy with email and password
-Passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+Passport.use('local', new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     User.findOne({ email: email.toLowerCase() }, (err, user: UserDocument) => {
         if (err) {
             return done(err);

@@ -8,17 +8,19 @@ import { BaseAPI } from './baseAPI';
 
 
 import { APIResponse, EAPIResponseStatus } from './APIResponse';
-import { UserDocument } from '../models/user';
+import { User, UserDocument } from '../models/user';
 
 export class UserAPI extends BaseAPI {
 
     public constructor() {
         super();
-        this.router.post('/login', this.login.bind(this));
+        this.router.get('/login', this.showLogin.bind(this));
+        this.router.post('/login', this.validateLoginParams.bind(this), Passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login'}));
+        this.router.get('/logout', this.logout.bind(this));
         this.router.post('/logout', this.logout.bind(this));
     }
 
-    public login(request: Express.Request, response: Express.Response, next: Express.NextFunction) {
+    public validateLoginParams(request: Express.Request, response: Express.Response, next: Express.NextFunction) {
         this.logRequest(request);
 
         return Promise.try(() => {
@@ -32,15 +34,7 @@ export class UserAPI extends BaseAPI {
                 throw Error(errors[0]);
             }
 
-            return Passport.authenticate('local', (error: Error, user: UserDocument, info: IVerifyOptions) => {
-                if (error) {
-                   throw error;
-                }
-
-                if (!user) {
-                    throw Error(info.message);
-                }
-            });
+            return next();
         }).catch((error) => {
             const message = (error.message) ? error.message : error
             return this.sendResponse(response, APIResponse.createResponse(EAPIResponseStatus.error, message));
@@ -52,5 +46,11 @@ export class UserAPI extends BaseAPI {
 
         request.logout();
         response.redirect('/');
+    }
+
+    public showLogin(request: Express.Request, response: Express.Response, next: Express.NextFunction) {
+        this.logRequest(request);
+
+        response.render('login', {});
     }
 }

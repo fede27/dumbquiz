@@ -12,7 +12,7 @@ import * as Winston from 'Winston';
 // API controllers
 import { UserAPI } from './api/userAPI';
 import { QuizAPI } from './api/quizAPI';
-import { StaticAPI } from './api/staticAPI';
+import { HomeAPI } from './api/homeAPI';
 
 
 const app = Express();
@@ -40,7 +40,7 @@ app.set("views", Path.join(__dirname, "./views"));
 app.set("view engine", "pug");
 
 // setup auth middleware
-import * as authStrategy from './auth/authStrategy';
+import'./auth/authStrategy';
 
 app.use(Passport.initialize());
 app.use(Passport.session());
@@ -51,14 +51,15 @@ app.use((req, res, next) => {
 });
 
 // setup routes
-const staticAPI = new StaticAPI();
-app.use('/', staticAPI.router);
+const homeAPI = new HomeAPI();
+app.use('/', homeAPI.router);
+
+const userAPI = new UserAPI();
+app.use('/', userAPI.router);
 
 const quizAPI = new QuizAPI();
 app.use('/api', quizAPI.router);
 
-const userAPI = new UserAPI();
-app.use('/user', userAPI.router);
 
 app.use((request, response, next) => {
     Winston.warn(`[${ constants.APP_NAME }] Resource not found: ${request.url}`);

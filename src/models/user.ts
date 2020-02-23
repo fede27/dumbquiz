@@ -7,7 +7,6 @@ type comparePasswordFn = (candidatePassword: string, cb: (err: any, isMatch: boo
 export type UserDocument = Mongoose.Document & {
     email: string;
     password: string;
-    admin: boolean;
     
     comparePassword: comparePasswordFn;
 };
@@ -16,7 +15,6 @@ export type UserDocument = Mongoose.Document & {
 const userSchema = new Mongoose.Schema({
     email: { type: String, unique: true },
     password: String,
-    admin: Boolean,
 }, { timestamps: true });
 
 userSchema.pre("save", function(next) {
