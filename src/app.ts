@@ -1,5 +1,6 @@
 import * as constants from './globalConstants';
 import * as Promise from 'bluebird';
+import * as Config from 'config';
 import * as Passport from 'passport';
 import * as Express from 'express';
 import * as Session from 'express-session';
@@ -11,6 +12,7 @@ import * as Winston from 'Winston';
 // API controllers
 import { UserAPI } from './api/userAPI';
 import { QuizAPI } from './api/quizAPI';
+import { StaticAPI } from './api/staticAPI';
 
 
 const app = Express();
@@ -27,12 +29,15 @@ app.use(Express.urlencoded({
 app.use(Session({
     resave: false,
     saveUninitialized: true,
-    secret: 'cosa-da-non-fare-in-un-vero-applicativo',
+    secret: Config.get<string>("session.secret"),
 }));
 
-app.use('/static', Express.static(Path.resolve('./site/static')), (request, response, next) => {
-    response.sendStatus(404);
-});
+// public resources
+app.use(Express.static('public'));
+
+// setup view engine
+app.set("views", Path.join(__dirname, "./views"));
+app.set("view engine", "pug");
 
 // setup auth middleware
 import * as authStrategy from './auth/authStrategy';
@@ -46,6 +51,8 @@ app.use((req, res, next) => {
 });
 
 // setup routes
+const staticAPI = new StaticAPI();
+app.use('/', staticAPI.router);
 
 const quizAPI = new QuizAPI();
 app.use('/api', quizAPI.router);

@@ -11,5 +11,9 @@
 
     "database": {
         "url": "mongodb+srv://<user>:<password>@dumbquiz-u7rwl.gcp.mongodb.net/test"
+    },
+
+    "session": {
+        "secret": "secret-session-key"
     }
 }

@@ -48,6 +48,6 @@ export const isAuthenticated = (request: Request, response: Response, next: Next
     if (request.isAuthenticated()) {
         return next();
     }
-    Winston.warn(`[${ constants.APP_NAME }] Unauthorized access blocked to url ${request.url}`);
+    Winston.warn(`[${ constants.APP_NAME }] Unauthorized access to url ${request.url} blocked`);
     response.redirect('/');
 }
