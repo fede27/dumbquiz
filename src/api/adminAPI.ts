@@ -2,6 +2,7 @@ import * as Promise from 'bluebird';
 import * as Express from 'express';
 
 import { BaseAPI } from './baseAPI';
+import { isAuthenticated } from '../auth/authStrategy';
 import { QuestionsController } from '../controllers/questionsController';
 
 
@@ -11,7 +12,7 @@ export class AdminAPI extends BaseAPI {
 
     public constructor() {
         super();
-        this.router.get('/', this.index.bind(this));
+        this.router.get('/', isAuthenticated, this.index.bind(this));
     }
 
     public index(request: Express.Request, response: Express.Response, next: Express.NextFunction) {

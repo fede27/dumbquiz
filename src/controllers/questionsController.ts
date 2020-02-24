@@ -52,22 +52,8 @@ export class QuestionsController extends BaseController {
                     return resolve(questions[0]);
                 }
 
-                return null;
+                return resolve(null);
             });
         });
     }
-
-    /*
-    public getAll(): Promise<IQuestion[]> {
-        return Promise.try(() => {
-            return this.model.getAll();
-        });
-    }
-
-    public getActive(): Promise<IQuestion> {
-        return Promise.try(() => {
-            return this.model.getActive();
-        });
-    }
-    */
 }

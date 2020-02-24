@@ -9,23 +9,6 @@ export abstract class BaseAPI {
 
     protected _router: Router = Router();
 
-    public isAdministrator(request: Request, response: Response, next: NextFunction): void {
-        // if (request.user.administrator) {
-        if (true) {
-            next();
-        } else {
-            this.sendResponse(response, APIResponse.createResponse(EAPIResponseStatus.forbidden, 'Forbidden'));
-        }
-    }
-
-    public isAuthenticated(request: Request, response: Response, next: NextFunction): void {
-        if (request.isAuthenticated()) {
-            next();
-        } else {
-            this.sendResponse(response, APIResponse.createResponse(EAPIResponseStatus.unauthorized, 'Unauthorized'));
-        }
-    }
-
     public get router(): Router {
         return this._router;
     }
