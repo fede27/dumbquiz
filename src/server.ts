@@ -2,7 +2,7 @@ import * as constants from './globalConstants';
 import * as Config from 'config';
 import * as Path from 'path';
 import * as Promise from 'bluebird';
-import * as Winston from 'Winston';
+import * as Winston from 'winston';
 
 import * as Moongose from 'mongoose';
 

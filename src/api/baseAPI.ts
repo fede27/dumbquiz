@@ -1,7 +1,7 @@
 import * as constants from '../globalConstants';
 import { Response, Request, NextFunction, Router } from "express";
 import * as Quip from 'quip';
-import * as Winston from 'Winston';
+import * as Winston from 'winston';
 
 import { APIResponse, EAPIResponseStatus } from './APIResponse';
 

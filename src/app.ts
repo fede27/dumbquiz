@@ -6,13 +6,14 @@ import * as Express from 'express';
 import * as Session from 'express-session';
 import * as Quip from 'quip';
 import * as Path from 'path';
-import * as Winston from 'Winston';
+import * as Winston from 'winston';
 
 
 // API controllers
 import { UserAPI } from './api/userAPI';
 import { QuizAPI } from './api/quizAPI';
 import { HomeAPI } from './api/homeAPI';
+import { AdminAPI } from './api/adminAPI';
 
 
 const app = Express();
@@ -56,6 +57,9 @@ app.use('/', homeAPI.router);
 
 const userAPI = new UserAPI();
 app.use('/', userAPI.router);
+
+const adminAPI = new AdminAPI();
+app.use('/admin', adminAPI.router);
 
 const quizAPI = new QuizAPI();
 app.use('/api', quizAPI.router);

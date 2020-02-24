@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as Passport from 'passport';
 import * as PassportLocal from 'passport-local';
 import * as _ from 'lodash';
-import * as Winston from 'Winston';
+import * as Winston from 'winston';
 
 import { User, UserDocument} from '../models/user';
 
